@@ -1,4 +1,4 @@
-if (NOT EXISTS $ENV{ROCM_PATH})
+﻿if (NOT EXISTS $ENV{ROCM_PATH})
     if (NOT EXISTS /opt/rocm)
         set(ROCM_PATH /usr)
     else()
@@ -47,9 +47,9 @@ find_package(hip     REQUIRED)
 find_package(hipblas REQUIRED)
 find_package(rocblas REQUIRED)
 
-if (${hip_VERSION} VERSION_LESS 6.1)
-    message(FATAL_ERROR "At least ROCM/HIP V6.1 is required")
-endif()
+#if (${hip_VERSION} VERSION_LESS 6.1)
+#    message(FATAL_ERROR "At least ROCM/HIP V6.1 is required")
+#endif()
 
 message(STATUS "HIP and hipBLAS found")
 
@@ -141,4 +141,5 @@ if (GGML_STATIC)
     message(FATAL_ERROR "Static linking not supported for HIP/ROCm")
 endif()
 
+target_link_options(ggml-hip PRIVATE -Xlinker /FORCE:MULTIPLE)
 target_link_libraries(ggml-hip PRIVATE ggml-base hip::host roc::rocblas roc::hipblas)

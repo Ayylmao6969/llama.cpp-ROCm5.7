@@ -1,4 +1,4 @@
-#include "chat.h"
+﻿#include "chat.h"
 #include "common.h"
 #include "arg.h"
 #include "console.h"
@@ -529,8 +529,8 @@ int main(int argc, char ** argv) {
                 console::error("file does not exist or cannot be opened: '%s'\n", fname.c_str());
                 continue;
             }
-            if (inf.fim_sep_token != LLAMA_TOKEN_NULL) {
-                cur_msg += common_token_to_piece(ctx_cli.ctx_server.get_llama_context(), inf.fim_sep_token, true);
+            if (inf.fim_sub_token != LLAMA_TOKEN_NULL) {
+                cur_msg += common_token_to_piece(ctx_cli.ctx_server.get_llama_context(), inf.fim_sub_token, true);
                 cur_msg += fname;
                 cur_msg.push_back('\n');
             } else {
